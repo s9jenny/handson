@@ -18,20 +18,24 @@ public class DemoApplication {
         return "<!DOCTYPE html>" +
                 "<html>" +
                 "<head>" +
-                "<title>Hello " + name + "</title>" +
+                "<title>Thank you " + name + "</title>" +
                 "<style>" +
                 "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; text-align: center; }" +
                 "h1 { color: #4CAF50; }" +
                 "p { font-size: 18px; }" +
                 ".message { background-color: #e7f3fe; border-left: 6px solid #2196F3; padding: 20px; display: inline-block; margin: 20px auto; }" +
+                ".dcp-message { background-color: #ffe0b2; border-left: 6px solid #ff9800; padding: 20px; margin: 20px auto; display: inline-block; }" +
                 "button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; font-size: 16px; }" +
                 "button:hover { background-color: #45a049; }" +
                 "</style>" +
                 "</head>" +
                 "<body>" +
-                "<h1>Hello, " + name + "!</h1>" +
+                "<h1>Thank you, " + name + "!</h1>" +
                 "<div class='message'>" +
-                "<p>Good job so far from Carles. Keep up the spirit, you're doing great!</p>" +
+                "<p>If you see this message, your offer letter is upcoming. Join the DCP (DevOps Career Path) – you're doing great!</p>" +
+                "</div>" +
+                "<div class='dcp-message'>" +
+                "<p><strong>Propose to all students:</strong> If you've deployed this app successfully, you’re ready to join our DCP (DevOps Career Path) program! We provide comprehensive guidance, one-on-one mentorship, and exclusive resources to help you land your dream job in DevOps. Take the next step in your career with us!</p>" +
                 "</div>" +
                 "<button onclick='showAlert()'>Click Me for a Surprise</button>" +
                 "<script>" +
