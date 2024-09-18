@@ -8,9 +8,9 @@ WORKDIR /app
 COPY pom.xml ./
 RUN mvn dependency:go-offline -B
 
-# Copy the source code and build the application
+# Copy the source code and build the application with debug logging
 COPY src ./src
-RUN mvn package -DskipTests
+RUN mvn package -DskipTests -X
 
 # Use an official OpenJDK runtime as the base image for running the application
 FROM openjdk:17-jdk-slim
