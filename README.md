@@ -6,29 +6,34 @@ In this project, you will:
 Provision an EC2 instance using Terraform.
 Set up Jenkins and SonarQube on the EC2 instance.
 Create a CI/CD pipeline with Jenkins to integrate Argo CD, SonarQube, and Slack notifications.
-Project Overview
+
+## Project Overview
+
 Terraform: Will provision an EC2 instance to host Jenkins and SonarQube.
 Jenkins: Will be used as a CI server to build, test, and deploy your Spring Boot application.
+
 SonarQube: Will be used for continuous inspection of code quality.
+
 Argo CD: Will handle the continuous deployment of your application into a Kubernetes cluster.
+
 Slack: Will provide notifications on pipeline success/failure.
 Steps to Achieve This Project
 
 # 1. Prerequisites
 
-# Ensure you have the following ready before starting:
+## Ensure you have the following ready before starting:
 
-AWS Account: You will need an active AWS account with credentials.
-Terraform: Installed on your local machine.
-SSH Keypair: To access the EC2 instance.
-Docker: Installed on the EC2 instance to build and run containers.
+- AWS Account: You will need an active AWS account with credentials.
+- Terraform: Installed on your local machine.
+- SSH Keypair: To access the EC2 instance.
+- Docker: Installed on the EC2 instance to build and run containers.
 
 # 2. Step-by-Step Instructions for Terraform
 
 # What You Need:
 
-Terraform installed on your local machine.
-AWS credentials configured (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY).
+- Terraform installed on your local machine.
+- AWS credentials configured (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY).
 
 # Steps:
 
