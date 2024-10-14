@@ -1,15 +1,15 @@
-# handson
+# hands on
 
-# Instructions for Students: Deploying EC2 with Terraform and Setting up Jenkins and SonarQube for CI/CD
+# Instructions for Students: Create a cluster and Deploy EC2 with Terraform and Set up Jenkins and SonarQube for CI/CD
 In this project, you will:
 
 Provision an EC2 instance using Terraform.
-Set up Jenkins and SonarQube on the EC2 instance.
+Set up Jenkins and SonarQube on the EC2 instances.
 Create a CI/CD pipeline with Jenkins to integrate Argo CD, SonarQube, and Slack notifications.
 
 ## Project Overview
 
-Terraform: Will provision an EC2 instance to host Jenkins and SonarQube.
+Terraform: Will provision an EC2 instances to host Jenkins and SonarQube.
 Jenkins: Will be used as a CI server to build, test, and deploy your Spring Boot application.
 
 SonarQube: Will be used for continuous inspection of code quality.
@@ -17,7 +17,7 @@ SonarQube: Will be used for continuous inspection of code quality.
 Argo CD: Will handle the continuous deployment of your application into a Kubernetes cluster.
 
 Slack: Will provide notifications on pipeline success/failure.
-Steps to Achieve This Project
+Steps to Achieve This Project:
 
 # 1. Prerequisites
 
