@@ -35,7 +35,7 @@ public class DemoApplication {
                 "<p>If you see this message, your offer letter is upcoming. Join the DCP (DevOps Career Path) – you're doing great!</p>" +
                 "</div>" +
                 "<div class='dcp-message'>" +
-                "<p><strong>Propose to all students:</strong> If you've deployed this app successfully, you’re ready to join our DCP (DevOps Career Path) program! We provide comprehensive guidance, one-on-one mentorship, and exclusive resources to help you land your dream job in DevOps. Take the next step in your career with us!</p>" +
+                "<p><strong>Propose to all students:</strong> If you've deployed this app successfully, you’re ready to make 6figures! We provide comprehensive guidance, one-on-one mentorship, and exclusive resources to help you land your dream job in DevOps. Take the next step in your career with us!</p>" +
                 "</div>" +
                 "<button onclick='showAlert()'>Click Me for a Surprise</button>" +
                 "<script>" +
