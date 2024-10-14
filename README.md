@@ -1,5 +1,7 @@
 # hands on 
 
+## Please documents each steps of this project.
+
 #### Store all your code to github and configure the s3 backend to store your terraform state file
 
 # Instructions for Students: Create a cluster and Deploy EC2 with Terraform and Set up Jenkins and SonarQube for CI/CD
