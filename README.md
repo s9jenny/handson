@@ -85,7 +85,7 @@ Copy code
 
     sudo apt update
    
-    sudo apt install -y openjdk-11-jdk
+    sudo apt install -y openjdk-17-jdk
 
     sudo apt install -y jenkins
 
