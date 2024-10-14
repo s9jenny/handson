@@ -10,7 +10,8 @@ Create a CI/CD pipeline with Jenkins to integrate Argo CD, SonarQube, and Slack 
 ## Project Overview
 
 Terraform: Will provision an EC2 instances to host Jenkins and SonarQube.
-Jenkins: Will be used as a CI server to build, test, and deploy your Spring Boot application.
+
+Jenkins: Will be used as a CI server to build, test, and deploy your Spring Boot application. (use jenkins agent)
 
 SonarQube: Will be used for continuous inspection of code quality.
 
@@ -67,7 +68,8 @@ Apply: Run terraform apply to provision the EC2 instance.
 
 bash
 Copy code
-ssh -i <your-keypair>.pem ubuntu@<ec2-public-ip>
+
+    ssh -i <your-keypair>.pem ubuntu@<ec2-public-ip>
 # 3. Step-by-Step Setup of Jenkins and SonarQube on EC2
 
 # What You Need:
@@ -91,13 +93,17 @@ Copy code
 
     sudo systemctl start jenkins
 
-Access Jenkins at http://<ec2-public-ip>:8080.
+Access Jenkins at 
+
+    http://<ec2-public-ip>:8080.
 
 # Install SonarQube:
 
 Install SonarQube on the same EC2 instance or another server (based on your performance needs):
 Follow SonarQube installation instructions to install it on Ubuntu.
-Access SonarQube at http://<ec2-public-ip>:9000.
+Access SonarQube at
+
+    http://<ec2-public-ip>:9000.
 
 # Configure Jenkins:
 
@@ -116,7 +122,7 @@ Slack: Webhook URL to send notifications.
 
 # Configure Git Integration:
 
-Ensure that Jenkins can pull your Spring Boot project from GitHub or Bitbucket.
+Ensure that Jenkins can pull your Spring Boot project from GitHub.
 
 # Set up Jenkins Pipeline:
 
@@ -124,8 +130,8 @@ In Jenkins, create a Pipeline Job and configure it with a Jenkinsfile that:
 Pulls code from Git.
 Runs Maven to build the code and package it.
 Performs SonarQube analysis to check for code quality.
-Builds and pushes the Docker image to a container registry.
-Deploys the application to Kubernetes using Argo CD.
+Builds and pushes the Docker image to your container registry.
+Deploys the application to you Kubernetes cluster using Argo CD.
 Add SonarQube Quality Gate:
 
 If desired, set up a SonarQube Quality Gate that will fail the build if code quality doesn’t meet the required standards.
@@ -133,7 +139,7 @@ If desired, set up a SonarQube Quality Gate that will fail the build if code qua
 # Configure Argo CD:
 
 Ensure Argo CD is properly deployed in your Kubernetes cluster and is syncing your Spring Boot application from your Git repository.
-Use Jenkins to trigger an Argo CD sync after building and pushing the Docker image.
+Use Jenkins to trigger an Argo CD sync after building and pushing the Docker image to docker hub.
 
 # Set up Slack Notifications:
 
@@ -155,12 +161,13 @@ Maven: As the build tool for the Spring Boot application.
 Argo CD: For continuous deployment in Kubernetes.
 Slack: For notifications on build status
 
-# Create Amazon EKS cluster by eksctl | How to create Amazon EKS cluster using EKSCTL | Create EKS Cluster in command line
+# Create Amazon EKS cluster using eksctl | How to create Amazon EKS cluster using EKSCTL | Create EKS Cluster in command line
 What is Amazon EKS
 
 Amazon EKS is a fully managed container orchestration service. EKS allows you to quickly deploy a production ready Kubernetes cluster in AWS, deploy and manage containerized applications more easily with a fully managed Kubernetes service. 
 
 EKS takes care of Master node/control plane. We need to manage worker nodes.
+
 ## Pre-requisites:
 
 You can use Windows, Macbook or any Ubuntu or Red Hat EC2 instance to setup the below tools.
@@ -226,4 +233,10 @@ the above command should create a EKS cluster in AWS, it might take 15 to 20 min
     kubectl get nodes
 
     kubectl get ns
+# Install prometheus and Grafana to monitor your cluster using helm.
 
+    https://github.com/Angecalais97/prometheus-Grafana-Zero-to-Hero.git
+
+### delete the cluster 
+
+    eksctl delete cluster --name demo-eks --region us-east-2 
