@@ -82,10 +82,15 @@ SonarQube: For code quality analysis.
 
 bash
 Copy code
-sudo apt update
-sudo apt install -y openjdk-11-jdk
-sudo apt install -y jenkins
-sudo systemctl start jenkins
+
+    sudo apt update
+   
+    sudo apt install -y openjdk-11-jdk
+
+    sudo apt install -y jenkins
+
+    sudo systemctl start jenkins
+
 Access Jenkins at http://<ec2-public-ip>:8080.
 
 # Install SonarQube:
@@ -149,3 +154,76 @@ Docker: For building and packaging the Spring Boot application.
 Maven: As the build tool for the Spring Boot application.
 Argo CD: For continuous deployment in Kubernetes.
 Slack: For notifications on build status
+
+# Create Amazon EKS cluster by eksctl | How to create Amazon EKS cluster using EKSCTL | Create EKS Cluster in command line
+What is Amazon EKS
+
+Amazon EKS is a fully managed container orchestration service. EKS allows you to quickly deploy a production ready Kubernetes cluster in AWS, deploy and manage containerized applications more easily with a fully managed Kubernetes service. 
+
+EKS takes care of Master node/control plane. We need to manage worker nodes.
+## Pre-requisites:
+
+You can use Windows, Macbook or any Ubuntu or Red Hat EC2 instance to setup the below tools.
+
+
+## Install AWS CLI – Command line tools for working with AWS services, including Amazon EKS.
+
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
+
+    sudo apt install unzip
+
+    sudo unzip awscliv2.zip  
+
+    sudo ./aws/install
+
+    aws --version
+
+## Install eksctl – A command line tool for working with EKS clusters that automates many individual tasks.
+
+     curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+- Move the extracted binary to /usr/local/bin. 
+
+      sudo mv /tmp/eksctl /usr/local/bin
+
+      eksctl version
+
+## install kubectl – A command line tool for working with Kubernetes clusters. 
+
+Update package manager
+
+       sudo apt-get update
+
+Install
+
+       sudo apt-get install -y kubectl
+
+Verify if kubectl got installed
+
+      kubectl version --client
+
+# Create AWS Access Keys
+
+Once you install all of the above, you need to have AWS credentials configured in your environment. The aws configure command is the fastest way to set up your AWS CLI installation for general use. 
+Make sure you do not have any IAM role attached to the EC2 instance. You can remove IAM role by going into AWS console and Detach the IAM role.
+
+    aws configure 
+
+the AWS CLI prompts you for four pieces of information: access key, secret access key, AWS Region, and output format.
+
+# Create EKS Cluster using eksctl
+
+     eksctl create cluster --name demo-eks --region us-east-2 --nodegroup-name my-nodes --node-type t3.small --managed --nodes 2 
+
+the above command should create a EKS cluster in AWS, it might take 15 to 20 mins. The eksctl tool uses CloudFormation under the hood, creating one stack for the EKS master control plane and another stack for the worker nodes. 
+
+    eksctl get cluster --name demo-eks --region us-east-2 
+
+###This should confirm that EKS cluster is up and running.
+
+# Connect to EKS cluster
+
+    kubectl get nodes
+
+    kubectl get ns
+
