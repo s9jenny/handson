@@ -4,7 +4,7 @@
 
 #### Store all your code to github and configure the s3 backend to store your terraform state file
 
-# Instructions for Students: Create a cluster and Deploy EC2 with Terraform and Set up Jenkins and SonarQube for CI/CD
+# Instructions for Students: Create a cluster and create EC2 with Terraform and Set up Jenkins and SonarQube for CI/CD
 In this project, you will:
 
 Provision an EC2 instance using Terraform.
