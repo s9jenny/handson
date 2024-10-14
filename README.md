@@ -228,7 +228,7 @@ the above command should create a EKS cluster in AWS, it might take 15 to 20 min
 
     eksctl get cluster --name demo-eks --region us-east-2 
 
-###This should confirm that EKS cluster is up and running.
+### This should confirm that EKS cluster is up and running.
 
 # Connect to EKS cluster
 
