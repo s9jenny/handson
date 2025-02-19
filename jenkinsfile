@@ -1,10 +1,17 @@
 pipeline {
     agent any
-    tool name: 'Maven', type: 'maven'
+    tools {
+        maven 'Maven'  // Make sure this matches your Jenkins Maven installation
+    }
     stages {
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/s9jenny/handson.git
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package'   // Build the app with Maven
             }
         }
     }
