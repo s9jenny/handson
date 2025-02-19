@@ -3,6 +3,10 @@ pipeline {
     tools {
         maven 'Maven'  // Make sure this matches your Jenkins Maven installation
     }
+    environment {
+        DOCKER_IMAGE = 's5carles/jenny:latest'  // Set your Docker image name
+        DOCKER_CREDENTIALS = credentials('dockerhub-cred')  // Jenkins credentials for Docker Hub token
+    }
     stages {
         stage('Clone Repository') {
             steps {
@@ -12,6 +16,30 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn clean package'   // Build the app with Maven
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image using the Dockerfile in the repo
+                    sh 'docker build -t $DOCKER_IMAGE .'
+                }
+            }
+        }
+        stage('Login to DockerHub') {
+            steps {
+                script {
+                    // Login to DockerHub using Jenkins credentials (Docker Hub Token)
+                    sh "echo $DOCKER_CREDENTIALS_PSW | docker login --username $DOCKER_CREDENTIALS_USR --password-stdin"
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    // Push the Docker image to Docker Hub
+                    sh 'docker push $DOCKER_IMAGE'
+                }
             }
         }
     }
