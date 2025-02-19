@@ -4,7 +4,7 @@ pipeline {
         maven 'Maven'  // Make sure this matches your Jenkins Maven installation
     }
     environment {
-        DOCKER_IMAGE = 's5carles/jenny:latest'  // Set your Docker image name
+        DOCKER_IMAGE = 'jenny903/jenny:latest'  // Set your Docker image name
         DOCKER_CREDENTIALS = credentials('dockerhub-cred')  // Jenkins credentials for Docker Hub token
     }
     stages {
