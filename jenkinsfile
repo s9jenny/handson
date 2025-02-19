@@ -5,7 +5,6 @@ pipeline {
     }
     environment {
         DOCKER_IMAGE = 'jenny903/jenny:latest'  // Set your Docker image name
-        DOCKER_CREDENTIALS = credentials('dockerhub-cred')  // Jenkins credentials for Docker Hub token
     }
     stages {
         stage('Clone Repository') {
@@ -30,9 +29,12 @@ pipeline {
         }
         stage('Login to DockerHub') {
             steps {
-                // Login to DockerHub using Jenkins credentials (Docker Hub Token)
-                script {
-                    sh "echo $DOCKER_CREDENTIALS_PSW | docker login --username $DOCKER_CREDENTIALS_USR --password-stdin"
+                // Use Jenkins credentials to securely login to DockerHub
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    script {
+                        // Login to DockerHub using credentials from the withCredentials block
+                        sh "echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin"
+                    }
                 }
             }
         }
@@ -46,3 +48,4 @@ pipeline {
         }
     }
 }
+
