@@ -1,0 +1,54 @@
+<<<<<<< HEAD
+=======
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'  // Make sure this matches your Jenkins Maven installation
+    }
+    environment {
+        DOCKER_IMAGE = 'jenny903/jenny:latest'  // Set your Docker image name
+    }
+    stages {
+        stage('Clone Repository') {
+            steps {
+                // Clone the repository from GitHub
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/s9jenny/handson'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build the application with Maven
+                sh 'mvn clean package'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                // Build Docker image using the Dockerfile in the repo
+                script {
+                    sh 'docker build -t $DOCKER_IMAGE .'
+                }
+            }
+        }
+        stage('Login to DockerHub') {
+            steps {
+                // Use Jenkins credentials to securely login to DockerHub
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    script {
+                        // Login to DockerHub using credentials from the withCredentials block
+                        sh "echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin"
+                    }
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                // Push the Docker image to Docker Hub
+                script {
+                    sh 'docker push $DOCKER_IMAGE'
+                }
+            }
+        }
+    }
+}
+
+>>>>>>> 5b30176f5708d69937d425c53f90d068e5df048e
