@@ -10,34 +10,36 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/s9jenny/handson.git'  // Added missing closing quote
+                // Clone the repository from GitHub
+                git 'https://github.com/s9jenny/handson.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'   // Build the app with Maven
+                // Build the application with Maven
+                sh 'mvn clean package'
             }
         }
         stage('Build Docker Image') {
             steps {
+                // Build Docker image using the Dockerfile in the repo
                 script {
-                    // Build Docker image using the Dockerfile in the repo
                     sh 'docker build -t $DOCKER_IMAGE .'
                 }
             }
         }
         stage('Login to DockerHub') {
             steps {
+                // Login to DockerHub using Jenkins credentials (Docker Hub Token)
                 script {
-                    // Login to DockerHub using Jenkins credentials (Docker Hub Token)
                     sh "echo $DOCKER_CREDENTIALS_PSW | docker login --username $DOCKER_CREDENTIALS_USR --password-stdin"
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
+                // Push the Docker image to Docker Hub
                 script {
-                    // Push the Docker image to Docker Hub
                     sh 'docker push $DOCKER_IMAGE'
                 }
             }
