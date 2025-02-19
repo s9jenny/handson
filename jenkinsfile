@@ -10,7 +10,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Clone the repository from GitHub
-                git 'https://github.com/s9jenny/handson.git'
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/s9jenny/handson'
             }
         }
         stage('Build') {
